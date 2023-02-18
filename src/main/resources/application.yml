@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: 'food-delivery-app'
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/postgres'
+    username: 'postgres'
+    password: 'postgres'
+    driverClassName: 'org.postgresql.Driver'
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+  cloud:
+    stream:
+      binders:
+        kafka:
+          type: 'kafka'
+      function:
+        definition: onReceiveFoodOrders
+        bindings:
+          onReceiveFoodOrders-in-0: 'food-orders-consumer'
+      bindings:
+        food-orders-consumer:
+          group: '${spring.application.name}-food-order'
+          binder: 'kafka'
+          destination: 'food-delivery-order-topic'
+          content-type: 'application/json'
+          consumer:
+            maxAttempts: 1
+            partitioned: true
+            concurrency: 10
+        food-orders-producer-out-0:
+          binder: 'kafka'
+          destination: 'food-delivery-order-topic'
+      kafka:
+#        bindings:
+#          food-orders-consumer:
+#            consumer:
+#              configuration:
+#                max.poll.interval.ms: 10000
+        binder:
+          brokers: 'http://localhost:29092'
+          autoCreateTopics: true
+
+client:
+  mockserver:
+    url: 'http://localhost:1080'
+    order-dispatch-uri: '/order-dispatch/'
+

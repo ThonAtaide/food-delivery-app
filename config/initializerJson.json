@@ -1,0 +1,21 @@
+[
+  {
+    "httpRequest": {
+      "path": "/order-dispatch/{order-uuid}",
+      "pathParameters": {
+        "order-uuid": ["[A-Z0-9\\-]+"]
+      },
+      "method": "POST"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "order": "some first response"
+      },
+      "delay": {
+        "timeUnit": "SECONDS",
+        "value": 2
+      }
+    }
+  }
+]
