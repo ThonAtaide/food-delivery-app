@@ -37,10 +37,6 @@ public class Order {
     @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;
 
-    public boolean orderStatusIsCreated() {
-        return CREATED.equals(this.getOrderStatus());
-    }
-
     public boolean orderStatusIsNotDelivered() {
         return !DELIVERED.equals(this.getOrderStatus());
     }

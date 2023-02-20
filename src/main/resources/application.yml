@@ -35,11 +35,6 @@ spring:
           binder: 'kafka'
           destination: 'delivery-orders-topic'
       kafka:
-#        bindings:
-#          food-orders-consumer:
-#            consumer:
-#              configuration:
-#                max.poll.interval.ms: 10000
         binder:
           brokers: 'http://localhost:29092'
           autoCreateTopics: true
