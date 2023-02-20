@@ -21,7 +21,7 @@ public class OrderController implements OrderControlerI {
     private final OrderServiceI orderService;
 
     @Override
-    public Mono<Void> createRandomOrders(Integer numberOfOrders) {
+    public Mono<Void> createRandomOrders(final Integer numberOfOrders) {
        return Flux.range(0, numberOfOrders)
                 .map(it -> buildRandomOrder())
                 .flatMap(orderService::createOrder)

@@ -16,7 +16,7 @@ public class MockServerService implements MockServerServiceI {
     private final MockServerClient mockServerClient;
 
     @Override
-    public Mono<Order> dispatchOrder(Order order) {
+    public Mono<Order> deliveryOrderToCustomer(Order order) {
         log.info("Calling mock server to dispatch order");
         return Mono.just(order)
                 .flatMap(it -> mockServerClient.dispatchOrder(it.getCorrelationId()))

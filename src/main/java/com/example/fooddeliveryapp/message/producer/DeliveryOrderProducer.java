@@ -19,13 +19,13 @@ import static reactor.core.publisher.SignalType.ON_NEXT;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class OrderProducer {
+public class DeliveryOrderProducer {
 
-    public static final String BINDER = "food-orders-producer-out-0";
+    public static final String BINDER = "delivery-orders-producer-out-0";
 
     private final StreamBridge streamBridge;
 
-    public Mono<OrderDto> sendOrder(OrderDto order) {
+    public Mono<OrderDto> sendOrderToDelivery(OrderDto order) {
         log.info("Produzindo ordem {}", order);
         return Mono.just(order)
                 .map(this::buildMessage)

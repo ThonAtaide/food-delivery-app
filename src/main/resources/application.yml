@@ -18,22 +18,22 @@ spring:
         kafka:
           type: 'kafka'
       function:
-        definition: onReceiveFoodOrders
+        definition: onReceiveFoodOrdersToDelivery
         bindings:
-          onReceiveFoodOrders-in-0: 'food-orders-consumer'
+          onReceiveFoodOrdersToDelivery-in-0: 'delivery-consumer'
       bindings:
-        food-orders-consumer:
+        delivery-consumer:
           group: '${spring.application.name}-food-order'
           binder: 'kafka'
-          destination: 'food-delivery-order-topic'
+          destination: 'delivery-orders-topic'
           content-type: 'application/json'
           consumer:
             maxAttempts: 1
             partitioned: true
-            concurrency: 10
-        food-orders-producer-out-0:
+            concurrency: 1
+        delivery-orders-producer-out-0:
           binder: 'kafka'
-          destination: 'food-delivery-order-topic'
+          destination: 'delivery-orders-topic'
       kafka:
 #        bindings:
 #          food-orders-consumer:
@@ -47,5 +47,5 @@ spring:
 client:
   mockserver:
     url: 'http://localhost:1080'
-    order-dispatch-uri: '/order-dispatch/'
+    order-dispatch-uri: '/order-delivery/'
 

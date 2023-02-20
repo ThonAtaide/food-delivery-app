@@ -8,6 +8,6 @@ public interface OrderServiceI {
 
     Mono<OrderDto> createOrder(OrderDto order);
 
-    Mono<OrderDto> updateOrderStatus(OrderDto order, OrderStatus orderStatus);
+    Mono<OrderDto> deliveryOrder(OrderDto order);
 
 }

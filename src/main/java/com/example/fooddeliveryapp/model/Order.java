@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+import static com.example.fooddeliveryapp.enums.OrderStatus.*;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -35,4 +37,11 @@ public class Order {
     @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;
 
+    public boolean orderStatusIsCreated() {
+        return CREATED.equals(this.getOrderStatus());
+    }
+
+    public boolean orderStatusIsNotDelivered() {
+        return !DELIVERED.equals(this.getOrderStatus());
+    }
 }

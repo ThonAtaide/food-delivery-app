@@ -1,7 +1,7 @@
 [
   {
     "httpRequest": {
-      "path": "/order-dispatch/{order-uuid}",
+      "path": "/order-delivery/{order-uuid}",
       "pathParameters": {
         "order-uuid": ["[A-Z0-9\\-]+"]
       },
@@ -10,7 +10,7 @@
     "httpResponse": {
       "statusCode": 200,
       "body": {
-        "order": "some first response"
+        "order": "The order was delivered."
       },
       "delay": {
         "timeUnit": "SECONDS",

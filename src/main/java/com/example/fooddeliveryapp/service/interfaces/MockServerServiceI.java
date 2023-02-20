@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface MockServerServiceI {
 
-    Mono<Order> dispatchOrder(final Order order);
+    Mono<Order> deliveryOrderToCustomer(final Order order);
 }
